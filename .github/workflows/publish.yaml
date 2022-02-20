@@ -27,7 +27,8 @@ jobs:
           echo 'deb https://${{ secrets.APT_REPO }} stable main' | sudo tee /etc/apt/sources.list.d/repo.list &&
           echo machine ${{ secrets.APT_REPO }} | sudo tee /etc/apt/auth.conf.d/repo.conf &&
           echo login ${{ secrets.APT_USER }} | sudo tee -a  /etc/apt/auth.conf.d/repo.conf &&
-          echo password ${{ secrets.APT_PASSWORD }} | sudo tee -a /etc/apt/auth.conf.d/repo.conf 
+          echo password ${{ secrets.APT_PASSWORD }} | sudo tee -a /etc/apt/auth.conf.d/repo.conf && 
+          gpg -a --export ${{ secrets.GPG_ID }} | sudo apt-key add -
       - name: Install apt-s3
         run: >
           sudo apt update && sudo apt install -y apt-s3 
