@@ -22,6 +22,15 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.GPG_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
+      - name: Add Apt Creds
+        run: >
+          echo 'deb https://${{ secrets.APT_REPO }} stable main' >> /etc/apt/sources.list.d/repo.list &&
+          echo machine ${{ secrets.APT_REPO }} > /etc/apt/auth.conf.d/repo.conf &&
+          echo login ${{ secrets.APT_USER }} >> /etc/apt/auth.conf.d/repo.conf &&
+          echo password ${{ secrets.APT_PASSWORD }} >> /etc/apt/auth.conf.d/repo.conf 
+      - name: Install apt-s3
+        run: >
+          sudo apt update && sudo apt install -y apt-s3 
       - name: Install go
         id: setup_go
         uses: actions/setup-go@v2
