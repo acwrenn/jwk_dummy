@@ -1,6 +1,6 @@
 # JWK Dummy
 
-This app is a little webserver that signs claims and servers configuration files so that the JWTs can be validated.
+This app is a little webserver that signs claims and serves configuration files so that the JWTs can be validated.
 
 To use -
 1. First, run the binary. `make run` will do.  
