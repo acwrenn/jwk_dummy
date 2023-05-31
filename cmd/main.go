@@ -7,7 +7,7 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/awrenn/jwk_dummy/internal/server"
+	"github.com/acwrenn/jwk_dummy/internal/server"
 )
 
 func main() {

@@ -1,6 +1,6 @@
-module github.com/awrenn/jwk_dummy
+module github.com/acwrenn/jwk_dummy
 
-go 1.17
+go 1.20
 
 require (
 	github.com/okta/okta-jwt-verifier-golang v1.2.1

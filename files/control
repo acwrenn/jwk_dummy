@@ -1,8 +1,0 @@
-Package: dummy-jwk
-Version: 1.0
-Section: custom
-Priority: optional
-Architecture: amd64
-Essential: no
-Maintainer: awrenn
-Description: Sign JWTs and serve JWKs, for testing tokens with specific claims.
