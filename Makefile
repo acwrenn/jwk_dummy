@@ -4,23 +4,23 @@ ARCH?=amd64
 BUCKET?=dummy-apt
 VERSION?=1.0.0
 
-./bin/dummy_jwk: $(shell find -name "*.go")
-	go build -o ./bin/dummy_jwk ./cmd 
+./bin/jwk_dummy: $(shell find -name "*.go")
+	go build -o ./bin/jwk_dummy ./cmd 
 
-build: ./bin/dummy_jwk
+build: ./bin/jwk_dummy
 	
-run: ./bin/dummy_jwk
+run: ./bin/jwk_dummy
 	./bin/jwk_server
 
 test:     
 	go test ./...
 
-publish: ./dummy_jwk-$(ARCH).deb
-	apt-s3 -region $(REGION) -bucket $(BUCKET) -deb ./dummy_jwk-$(ARCH).deb -key $(GPG_KEY)
+publish: ./jwk_dummy-$(ARCH).deb
+	apt-s3 -region $(REGION) -bucket $(BUCKET) -deb ./jwk_dummy-$(ARCH).deb -key $(GPG_KEY)
 
-./dummy_jwk-$(ARCH).deb: ./bin/dummy_jwk
+./jwk_dummy-$(ARCH).deb: ./bin/jwk_dummy
 	mkdir -p ./out/DEBIAN
 	cp files/control ./out/DEBIAN/control
 	mkdir -p ./out/usr/bin
-	cp ./bin/dummy_jwk ./out/usr/bin/dummy_jwk
-	dpkg-deb --build ./out ./dummy_jwk-$(ARCH).deb
+	cp ./bin/jwk_dummy ./out/usr/bin/jwk_dummy
+	dpkg-deb --build ./out ./jwk_dummy-$(ARCH).deb
